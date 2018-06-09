@@ -12,7 +12,7 @@ https://github.com/javascriptru/angularpro-20180531-1930
 ## Дополнительные вопросы:
 
 - How to pass params for ngComponentOutlet
-- template calls for getter
+- template calls for getter (https://stackblitz.com/edit/angular-ug2xqz?file=src/app/hello.component.ts)
 - Утечки памяти и unsubscribe
 - Angular Elements make it work
 
