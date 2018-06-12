@@ -9,7 +9,27 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <custom-hello></custom-hello>
+  <custom-hello name="John">
+    <div>
+      <h1>
+        CONTENT
+      </h1>
+    </div>
+  </custom-hello>
+  <h1></h1>
 
+  <script>
+    const students =  ["Виталий Катаев", "Vladimir Troyanenko", "Сергей Козыренко", "САМИР Абахри", "Армен Тарламазян", "Konstantin Kharitonov", "Дмитрий Крупин", "Алексей Кучеров", "Павел Леонов", "Евгений Трусевич", "Юрий Беляков", "Андрей Тарасов", "Денис Романенко", "Тимофей Шенин", "Антон Черепов"];
+    const customHello = document.querySelector('custom-hello');
+    let i = 1;
+    setInterval(() => {
+      customHello.setAttribute('name', students[i++ % students.length]);
+    }, 500);
+
+    customHello.addEventListener('clicked', (event) => {
+        document.querySelector('h1').innerHTML = event.detail;
+    });
+
+  </script>
 </body>
 </html>
