@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: '[box]',
@@ -14,7 +14,21 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
       strokeWidth="1"></svg:rect>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoxComponent {
+export class BoxComponent implements AfterViewInit {
   @Input() box;
   @Input() selected;
+
+  constructor(private cd: ChangeDetectorRef) {
+
+  }
+
+  ngAfterViewInit() {
+    this.cd.detach();
+  }
+
+  reattach() {
+    this.cd.reattach();
+  }
+
+
 }

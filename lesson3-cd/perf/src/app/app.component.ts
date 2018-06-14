@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -9,9 +9,7 @@ function getRandomInt(min, max) {
   template: `
     <svg width="550" height="550"
       (mousedown)="mouseDown($event)"
-      (mousemove)="mouseMove($event)"
-      (mouseup)="mouseUp($event)"
-      >
+      (mouseup)="mouseUp($event)">
       <svg:g
         box
         *ngFor="let box of boxes"
@@ -19,8 +17,7 @@ function getRandomInt(min, max) {
         [selected]="box.id == currentId"
         ></svg:g>
     </svg>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  `
 })
 export class AppComponent {
 
@@ -29,8 +26,12 @@ export class AppComponent {
   offsetX;
   offsetY;
 
+  constructor(private element: ElementRef) {
+
+  }
+
   ngOnInit() {
-    for (let i=0; i < 10; i++) {
+    for (let i=0; i < 10000; i++) {
       const id = i;
       const x = getRandomInt(0, 500);
       const y = getRandomInt(0, 500);
@@ -44,7 +45,6 @@ export class AppComponent {
   }
 
   mouseDown(event) {
-    debugger
     const id = Number(event.target.getAttribute("dataId"));
     const box = this.boxes[id];
     const mouseX = event.clientX;
@@ -52,6 +52,11 @@ export class AppComponent {
     this.offsetX = box.x - mouseX;
     this.offsetY = box.y - mouseY;
     this.currentId = id;
+
+    //(mousemove)="mouseMove($event)"
+    // document.addEventListener('mousemove', (event) => this.mouseMove(event));
+
+    this.element.nativeElement.addEventListener('mousemove', (event) => this.mouseMove(event));
   }
 
   mouseMove(event) {
