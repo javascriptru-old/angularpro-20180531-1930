@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 /*
    <ul>
@@ -13,13 +13,14 @@ import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
   selector: 'app-root',
   template: `
 
-   <app-traffic [formControl]="traffic"></app-traffic>
+
 
    `,
   styles: []
 })
 export class AppComponent {
-  traffic: FormControl = new FormControl();
+  traffic: FormControl = new FormControl('', [Validators.maxLength(5), myValidator(5)]);
+  trafficGroup: FormGroup = new FormGroup({}, [Validators.maxLength(5), myValidator(5)]);
 
 
 
@@ -29,6 +30,18 @@ export class AppComponent {
   }
 
 }
+
+function myValidator(param: number) {
+  return function myValidator(c: AbstractControl) {
+    if('error' || param){
+      return { error: { message: 'bad response' }}
+    }
+
+    return null;
+  }
+}
+
+
 
 /*
 FormControl
