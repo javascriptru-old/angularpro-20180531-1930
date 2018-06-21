@@ -16,6 +16,7 @@ https://github.com/javascriptru/angularpro-20180531-1930
 - Утечки памяти и unsubscribe
 - Angular Elements make it work
 - [How to test a component which contains a custom form control?](https://stackoverflow.com/questions/50821486/how-to-test-a-component-which-contains-a-custom-form-control)
+- живой пример ReplaySubject
 
 
 ## Задания на курс

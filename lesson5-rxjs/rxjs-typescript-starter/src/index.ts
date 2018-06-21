@@ -41,7 +41,7 @@ const myInput = document.querySelector('input');
 //     .then(response => response.json())
 // })).subscribe(response => console.log(response.total_count))
 
-import { timer, interval, range, Observable, Observer, of, from, throwError, empty, Subject } from 'rxjs';
+import { timer, interval, range, Observable, Observer, of, from, throwError, empty, Subject, fromEvent } from 'rxjs';
 
 // const o = Observable.create((observer: Observer<string>) => {
 //   observer.next('Hello!');
@@ -144,13 +144,75 @@ import { tap, finalize, delay, delayWhen, timeout } from 'rxjs/operators';
 //   console.log(number);
 // }));
 
-const o = range(1, 10).pipe(delay(3000), timeout(1000), finalize(() => {
-  console.log('HERE!')
-}));
+// const o = range(1, 10).pipe(delay(3000), timeout(1000), finalize(() => {
+//   console.log('HERE!')
+// }));
 
 
-const subscribtion = o.subscribe({
-  next: (value: number) => console.log('Next:', value),
-  complete: () => console.log('Complete!'),
-  error: (error) => console.log('Error', error)
-});
+import { pluck, reduce, scan, groupBy } from 'rxjs/operators';
+import { map, mapTo } from 'rxjs/operators';
+import { flatMap, switchMap, exhaustMap } from 'rxjs/operators';
+
+// flatMap === mergeMap
+
+// const o = Observable.create((observer: Observer<{name: string, surname: string}>) => {
+//    observer.next({ name: 'John', surname: 'Wall'});
+//    observer.next({ name: 'Bob', surname: 'Wall'});
+
+//    setTimeout(() => {
+//      observer.next({ name: 'Bob', surname: 'Wood'});
+//    }, 5000);
+// }).pipe(pluck('name'), distinctUntilChanged());
+
+//const o = of(1,2,3,4,5)
+//.pipe(reduce((total: number, current:number) => total + current));
+//.pipe(scan((total: number, current:number) => total + current));
+// .pipe(map(number => number * 2))
+//.pipe(mapTo('Hi!'))
+
+// [[1,2,3], [4,5,6]] => [1,2,3,4,5,6]
+
+// const o = fromEvent(document, 'click')
+// .pipe(flatMap(_ => interval(1000)));
+// .pipe(switchMap(_ => interval(1000)));
+// .pipe(exhaustMap(_ => interval(1000)));
+
+
+
+import { catchError, retry, retryWhen } from 'rxjs/operators'
+
+
+// const o = of(5).pipe(delay(3000), timeout(1000), tap(_ => {
+//   console.log('Doing something!')
+// }),retry(3));
+
+// const o = interval(1000).pipe(
+//   flatMap(val => {
+//     if(val > 3){
+//       return throwError('Error >3');
+//     }
+//     return of(val);
+//   })
+// //  ,retry(3))
+//   ,retryWhen(errorObservable => errorObservable.pipe(delay(3000))))
+
+
+// const subscribtion = o.subscribe({
+//   next: (value: any) => console.log('Next:', value),
+//   complete: () => console.log('Complete!'),
+//   error: (error) => console.log('Error', error)
+// });
+
+
+import { multicast, publish, share, shareReplay } from 'rxjs/operators';
+
+// COLD -> HOT
+
+const o = interval(1000)
+  .pipe(tap(n => console.log(n)), shareReplay(2, 5000));
+
+o.subscribe();
+o.subscribe();
+o.subscribe();
+o.subscribe();
+o.subscribe();
