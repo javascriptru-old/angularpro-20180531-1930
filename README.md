@@ -16,7 +16,8 @@ https://github.com/javascriptru/angularpro-20180531-1930
 - Утечки памяти и unsubscribe
 - Angular Elements make it work
 - [How to test a component which contains a custom form control?](https://stackoverflow.com/questions/50821486/how-to-test-a-component-which-contains-a-custom-form-control)
-- живой пример ReplaySubject
+- живой пример ReplaySubject - component post-init
+- как передать в аттрибут директиву больше одного параметра - https://stackblitz.com/edit/angular-6x3wqh?file=src/app/test.directive.ts
 
 
 ## Задания на курс

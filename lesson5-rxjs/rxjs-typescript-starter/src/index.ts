@@ -100,7 +100,7 @@ import { timer, interval, range, Observable, Observer, of, from, throwError, emp
 
 // s.next('Hi!');
 
-import { first, last, filter, single, ignoreElements } from 'rxjs/operators'
+import { first, last, filter, single, ignoreElements, observeOn } from 'rxjs/operators'
 import { debounce, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { throttle, throttleTime } from 'rxjs/operators'
 import { audit, auditTime } from 'rxjs/operators'
@@ -116,8 +116,7 @@ import { take, takeLast } from 'rxjs/operators'
 //   error: (error) => console.log('Error', error)
 // });
 
-import { forkJoin } from 'rxjs';
-import { combineLatest, zip } from 'rxjs/operators';
+import { forkJoin, combineLatest, zip } from 'rxjs';
 import { concat, merge } from 'rxjs/operators';
 import { startWith } from 'rxjs/operators';
 import { withLatestFrom } from 'rxjs/operators';
@@ -205,14 +204,26 @@ import { catchError, retry, retryWhen } from 'rxjs/operators'
 
 
 import { multicast, publish, share, shareReplay } from 'rxjs/operators';
+import { asyncScheduler, queueScheduler, asapScheduler } from 'rxjs';
 
 // COLD -> HOT
 
-const o = interval(1000)
-  .pipe(tap(n => console.log(n)), shareReplay(2, 5000));
+// const o = interval(1000)
+//   .pipe(tap(n => console.log(n)), shareReplay(2, 5000));
 
-o.subscribe();
-o.subscribe();
-o.subscribe();
-o.subscribe();
-o.subscribe();
+// o.subscribe();
+// o.subscribe();
+// o.subscribe();
+// o.subscribe();
+// o.subscribe();
+
+const o1 = of(1,2).pipe(observeOn(asyncScheduler));
+const o2 = of(10);
+
+const o = combineLatest(o1, o2);
+
+o.subscribe({
+  next: (value: any) => console.log('Next:', value),
+  complete: () => console.log('Complete!'),
+  error: (error) => console.log('Error', error)
+});
