@@ -19,6 +19,8 @@ https://github.com/javascriptru/angularpro-20180531-1930
 - живой пример ReplaySubject - component post-init
 - как передать в аттрибут директиву больше одного параметра - https://stackblitz.com/edit/angular-6x3wqh?file=src/app/test.directive.ts
 
+- tests: async() + testScheduler
+
 
 ## Задания на курс
 - сделать структурную директиву "ACL": в нее передается какие роли могут иметь доступ к компоненту. Она через сервис смотрит роль текущего пользователя и прячет либо показывает элемент на странице.
