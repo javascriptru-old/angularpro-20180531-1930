@@ -20,6 +20,8 @@ https://github.com/javascriptru/angularpro-20180531-1930
 - как передать в аттрибут директиву больше одного параметра - https://stackblitz.com/edit/angular-6x3wqh?file=src/app/test.directive.ts
 
 - tests: async() + testScheduler
+- как правильно развивать архитектуру ngrx
+- как тестировать ngrx
 
 
 ## Задания на курс
