@@ -11,15 +11,17 @@ https://github.com/javascriptru/angularpro-20180531-1930
 
 ## Дополнительные вопросы:
 
-- How to pass params for ngComponentOutlet
+- How to pass params for ngComponentOutlet (https://stackblitz.com/edit/angular-ngcomponentoutlet-input?file=src/app/app.component.ts)
 - template calls for getter (https://stackblitz.com/edit/angular-ug2xqz?file=src/app/hello.component.ts)
 - Утечки памяти и unsubscribe
-- Angular Elements make it work
+    (http://stepansuvorov.com/blog/2017/06/angular-rxjs-unsubscribe-or-not-unsubscribe/)
+    (https://medium.com/@wishtack/rx-scavenger-the-rxjs-garbage-collector-b050099a00ea)
+- Angular Elements make it work (./lesson1-components/hello)
 - [How to test a component which contains a custom form control?](https://stackoverflow.com/questions/50821486/how-to-test-a-component-which-contains-a-custom-form-control)
 - живой пример ReplaySubject - component post-init
-- как передать в аттрибут директиву больше одного параметра - https://stackblitz.com/edit/angular-6x3wqh?file=src/app/test.directive.ts
+- как передать в аттрибут директиву больше одного параметра (https://stackblitz.com/edit/angular-6x3wqh?file=src/app/test.directive.ts)
 
-- tests: async() + testScheduler
+- tests: async() + testScheduler (https://angular.io/guide/testing#marble-error-testing)
 - как правильно развивать архитектуру ngrx
 - как тестировать ngrx
 
@@ -38,3 +40,13 @@ https://github.com/javascriptru/angularpro-20180531-1930
 - сделать свой Observable класс/конструктор
 
 - Бонус: пример auditTime/debounceTime. pairwise
+
+
+
+
+
+
+
+
+
+http.get.pipe(timeout, catchError)
